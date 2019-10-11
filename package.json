@@ -1,0 +1,38 @@
+{
+  "name": "RESTful-API",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node Server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dir": "NODE_ENV=development nodemon -w dir --exec \"babel-node dir --presets env,stage-0 --ignore '**/grammar/*'\"",
+    "build": "babel src -s -D -d dist --presets env,stage-0 --compact false "
+  },
+  "dependencies": {
+    "MD5": "~1.2.1",
+    "body-parser": "~1.12.0",
+    "express": "~4.12.2",
+    "mysql": "~2.5.5",
+    "mysql2": "^1.6.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 7,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "no-unused-vars": 1
+    }
+  }
+}
