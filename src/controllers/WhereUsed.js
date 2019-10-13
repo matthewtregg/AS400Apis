@@ -14,9 +14,10 @@ const getFileField = async (req, res) => {
 
 const getPgms = async (req, res) => {
   const DBname = req.params.DBname;
+  console.log(DBname);
   const pgmId = req.params.PgmId;
   const pgmCalls = new PgmCalls();
-  pgmCalls.getWhereUsedPgms(pgmId, DBname).then(result => res.send(result[0]));
+  pgmCalls.getWhereUsedPgms(pgmId, DBname).then(result => res.send(result));
 };
 
 const getEnts = async (req, res) => {

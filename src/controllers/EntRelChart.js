@@ -1,4 +1,5 @@
 const EntRels = require("../models/EntRels");
+
 const getEntRelChild = async (req, res) => {
   const ent = req.params.ent;
   const DBname = req.params.DBname;
@@ -58,7 +59,7 @@ const getEntRelInfo = async (req, res) => {
 
   let otherIds = parentIds.concat(childIds);
   otherIds = otherIds.filter(id => id !== ent);
-  const otherRels = await entRels.getOtherRels(otherIds);
+  const otherRels = await entRels.getOtherRels(otherIds, DBname);
   for (rel of entrels) {
     if (children.includes(rel)) {
       rel.lastChild = false;
