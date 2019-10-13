@@ -12,7 +12,8 @@ const getProgramList = async(req,res) => {
 }
 
 const getEntList = async(req, res) => {
-  const dbname = req.params.dbName;
+  const dbname = req.params.DBname;
+  console.log(dbname);
   const entities = new Entities ();
   const entityList = await entities.getFileList(dbname);
   res.send(entityList);

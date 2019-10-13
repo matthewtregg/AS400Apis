@@ -12,10 +12,11 @@ class DFDPgms {
   async getDFDPgmInfo(pgmId, DBname) {
     var stmt = new connObj.db.dbstmt(connObj.dbconn);
 
-    let query = `SELECT  * FROM ${DBname}.PGMCALLS pc INNER JOIN ${DBname}.PGMDEFS pd ON pc.PGMID = pd.PGMID
-    WHERE pc.PGMID = '${pgmId}' AND pc.EXCPGM = '' UNION
-    SELECT  * FROM ${DBname}.PGMCALLS pc INNER JOIN ${DBname}.PGMDEFS pd ON pc.CLDPGM = pd.PGMID
-    WHERE pc.CLDPGM = '${pgmId}' AND pc.EXCPGM = ''`;
+    let query = `SELECT pc.PGMID AS PGMID, pc.CLDPGM AS CLDPGM, pd.PGMTX  FROM ${DBname}.PGMCALLS pc INNER JOIN ${DBname}.PGMDEFS pd ON pc.CLDPGM = pd.PGMID
+    WHERE pc.PGMID = '${pgmId}' AND pc.EXCPGM = '' AND pc.PGMID <> pc.CLDPGM UNION
+    SELECT pc.PGMID AS PGMID, pc.CLDPGM AS CLDPGM, pd.PGMTX FROM ${DBname}.PGMCALLS pc INNER JOIN ${DBname}.PGMDEFS pd ON pc.PGMID = pd.PGMID
+    WHERE pc.CLDPGM = '${pgmId}' AND pc.EXCPGM = '' AND pc.PGMID <> pc.CLDPGM`; 
+    
     return new Promise((resolve, reject) => {
       stmt.exec(query, rs => {
         stmt.close();

@@ -21,14 +21,13 @@ router
   .get("/EntRel/:ent/:DBname", EntRelChart.getEntRelInfo)
   .get("/getEntRelParent/:ent/:DBname", EntRelChart.getEntRelParent)
   .get("/getEntRelChild/:ent/:DBname", EntRelChart.getEntRelChild)
-  .get(
-    "/findFileWhereUsedField/:dbName/:fieldId/:DBname",
-    WhereUsed.getFileField
-  )
-  .get("/findPgmWhereUsed/:dbName/:PgmId/:DBname", WhereUsed.getPgms)
-  .get("/findEntWhereUsed/:dbName/:EntId/:DBname", WhereUsed.getEnts)
-  .get("/findVarWhereUsedSource/:dbName/:Var/:DBname", WhereUsed.getVar)
-  .get('/getrep', Repository.getRep);
+  .get("/findFileWhereUsedField/:fieldId/:DBname", WhereUsed.getFileField)
+  .get("/findPgmWhereUsed/:PgmId/:DBname", WhereUsed.getPgms)
+  .get("/findEntWhereUsed/:EntId/:DBname", WhereUsed.getEnts)
+  .get("/findVarWhereUsedSource/:Var/:DBname", WhereUsed.getVar)
+  .get('/getrep', Repository.getRep)
+  .get('/getEntList/:DBname', List.getEntList); 
+
   
 // STNTYPE
 // just file or pgm where used

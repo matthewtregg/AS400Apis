@@ -62,15 +62,17 @@ class PgmCalls {
     });
   }
   //PGM DEFS
+
+
   async getWhereUsedPgms(pgmId, DBname) {
     const display = "D";
     var stmt = new connObj.db.dbstmt(connObj.dbconn);
 
     return new Promise((resolve, reject) => {
-      let query = `SELECT pc.PGMID, pc.CLDPGM, pd.PGMTX, pd.PGMTYP  FROM ${DBname}.PGMCALLS pc INNER JOIN ${DBname}.PGMDEFS pd ON pc.PGMID = pd.PGMID
+      let query = `SELECT pc.PGMID, pc.CLDPGM, pd.PGMTX, pd.PGMTYP  FROM ${DBname}.PGMCALLS pc INNER JOIN ${dbname}.PGMDEFS pd ON pc.CLDPGM = pd.PGMID
       WHERE pc.PGMID = '${pgmId}' AND pc.EXCPGM = '' UNION
-      SELECT pc.PGMID, pc.CLDPGM, pd.PGMTX, pd.PGMTYP  FROM ${DBname}.PGMCALLS pc INNER JOIN ${DBname}.PGMDEFS pd ON pc.CLDPGM = pd.PGMID
-      WHERE pc.CLDPGM = '${pgmId}' AND pc.EXCPGM = ''`;
+      SELECT pc.PGMID, pc.CLDPGM, pd.PGMTX, pd.PGMTYP  FROM ${DBname}.PGMCALLS pc INNER JOIN ${dbname}.PGMDEFS pd ON pc.PGMID = pd.PGMID
+      WHERE pc.CLDPGM = '${pgmId}' AND pc.EXCPGM = ''`
       stmt.exec(query, rs => {
         stmt.close();
         console.log("getpgm list fetched====", rs.length);

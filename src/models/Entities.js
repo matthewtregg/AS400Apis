@@ -48,14 +48,13 @@ class Entities {
     });
   }
 
-  async getFileList(ent, DBname) {
+  async getFileList(DBname) {
     var stmt = new connObj.db.dbstmt(connObj.dbconn);
-
-    let query = `SELECT DISTINCT ENTID FROM ${DBname}.ENTRELS`;
     return new Promise((resolve, reject) => {
+      let query = `SELECT DISTINCT ENTID FROM ${DBname}.Entities`;
       stmt.exec(query, rs => {
         stmt.close();
-        console.log("fetched getEntDefList====", rs.length);
+        console.log("getent list fetched====", rs.length);
         resolve(rs);
       });
     });
