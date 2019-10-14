@@ -27,15 +27,15 @@ class DFDPgms {
     });
   }
 
+
   async getDFDFileInfo(pgmId, DBname) {
     var stmt = new connObj.db.dbstmt(connObj.dbconn);
 
-    let query = `SELECT * FROM ${DBname}.PGMFILES fl WHERE fl.PGMID = '${pgmId}'`;
     return new Promise((resolve, reject) => {
+      let query = `SELECT * FROM ${DBname}.PGMFILES fl WHERE fl.PGMID = '${pgmId}'`;
       stmt.exec(query, rs => {
         stmt.close();
-        console.log(rs);
-        console.log("fetched getDFDFIle info====", rs.length);
+        console.log("getDFD file info  fetched====", rs.length);
         resolve(rs);
       });
     });
